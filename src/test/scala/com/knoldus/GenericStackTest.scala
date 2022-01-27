@@ -32,15 +32,17 @@ class GenericStackTest extends AnyFlatSpec {
     assert(emptyStack.isEmpty == true)
   }
   "A condition" should "give exception when trying to pop an element from an empty stack" in {
-    val result = "Stack is already empty"
+    val result = "Stack is empty"
     val thrown = intercept[Exception] {
       emptyStack.pop
     }
+    assert(thrown.getMessage == result)
   }
   "A condition" should "give exception when trying to find top element from an empty stack" in {
-    val result = "Stack is already empty"
+    val result = "Stack is empty"
     val thrown = intercept[Exception] {
       emptyStack.top
     }
+    assert(thrown.getMessage == result)
   }
 }
