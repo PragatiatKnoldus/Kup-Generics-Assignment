@@ -5,10 +5,10 @@ import org.scalatest.flatspec.AnyFlatSpec
 class GenericStackTest extends AnyFlatSpec {
 
   val intStack = new GenericStack[Int](List(4, 7, 5, 8))
+  val emptyStack = new GenericStack[Nothing](List())
 
-  "Condition" should "give true if the stack is empty" in {
-    assert(!(intStack.isEmpty == true))
-  }
+  // Test cases for non empty stack
+
   "Condition" should "give false if stack is not Empty" in {
     assert(intStack.isEmpty == false)
   }
@@ -20,9 +20,27 @@ class GenericStackTest extends AnyFlatSpec {
     intStack.push(3)
     assert(intStack.top == 3)
   }
-  "Condition" should "pop the element from the stack" in {
+  "Condition" should "pop an element from the stack" in {
     intStack.push(9)
     intStack.push(2)
     assert(intStack.pop == 2)
+  }
+
+  // Test cases for empty stack
+
+  "Condition" should "give true if the stack is empty" in {
+    assert(emptyStack.isEmpty == true)
+  }
+  "A condition" should "give exception when trying to pop an element from an empty stack" in {
+    val result = "Stack is already empty"
+    val thrown = intercept[Exception] {
+      emptyStack.pop
+    }
+  }
+  "A condition" should "give exception when trying to find top element from an empty stack" in {
+    val result = "Stack is already empty"
+    val thrown = intercept[Exception] {
+      emptyStack.top
+    }
   }
 }
